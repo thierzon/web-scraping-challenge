@@ -40,7 +40,8 @@ def scrape():
     # Scrape Mars Facts
     facts_table = pd.read_html('http://space-facts.com/mars/')[0]
     facts_table.columns = ['Description', 'Mars']
-    facts_html = facts_table.to_html()
+    facts_table.set_index('Description', inplace=True)
+    facts_html = facts_table.to_html(classes="table table-striped")
 
     # Scrape Mars Hemisphere images
     hemisphere_image_urls = [
